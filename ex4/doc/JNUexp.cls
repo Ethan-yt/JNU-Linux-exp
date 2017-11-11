@@ -35,13 +35,12 @@ bottom=2.25cm%
 
 % Set up the header and footer
 \RequirePackage{fancyhdr}  			% use fancyhdr package to get 2-line header
-\RequirePackage{extramarks} % Required for headers and footers
 \pagestyle{fancy}\fancyhf{}
 \lhead{} % Top left header
 \chead{\@courseName: \@expName} % Top center head
-\rhead{\firstxmark} % Top right header
-\lfoot{\lastxmark} % Bottom left footer
-\cfoot{\leftmark} % Bottom center footer
+\rhead{} % Top right header
+\lfoot{} % Bottom left footer
+\cfoot{} % Bottom center footer
 \rfoot{Page\ \thepage\ of\ \protect\pageref{LastPage}} % Bottom right footer
 \renewcommand\headrulewidth{0.4pt} % Size of the header rule
 \renewcommand\footrulewidth{0.4pt} % Size of the footer rule
