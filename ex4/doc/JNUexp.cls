@@ -55,9 +55,9 @@ bottom=2.25cm%
 \newcommand{\@border}{
 \begin{tikzpicture}[remember picture,overlay] 
 \draw [line width=0.4pt]
-($ (current page.south west) + (2.2cm,2.05cm) $)
+($ (current page.south west) + (2.2cm,2cm) $)
 rectangle
-($ (current page.north east) + (-2.2cm,-2.05cm) $);
+($ (current page.north east) + (-2.2cm,-2cm) $);
 \end{tikzpicture}
 }
 
@@ -72,9 +72,9 @@ rectangle
 \newcommand{\@endLine}{
 \begin{tikzpicture}[remember picture,overlay] 
 \draw [line width=0.4pt]
-($ (current page.south west) + (2.2cm,4.05cm) $)
+($ (current page.south west) + (2.2cm,4cm) $)
 --
-($ (current page.south east) + (-2.2cm,4.05cm) $);
+($ (current page.south east) + (-2.2cm,4cm) $);
 \end{tikzpicture}
 }
 
@@ -121,17 +121,22 @@ rectangle
 
 
 \AtEndDocument{
-\@endLine
-\vfill
 
-\renewcommand\arraystretch{1.5} % 行间距
-\renewcommand{\tabcolsep}{0.2cm} % 列间距
-\newcolumntype{C}{ >{\centering\arraybackslash} m{1.5cm} }
-\newcolumntype{D}{ >{\centering\arraybackslash} m{0.3cm} }
-\newcolumntype{E}{ >{\centering\arraybackslash} m{0.6cm} }
-\begin{tabularx}{\textwidth}{C|D|X|D|X|D|X|D|X|D|X|E|p{2cm}|D|p{2cm}}
-教师评价 & 优 & & 良 & & 中 & & 及 格 & & 不 及 格& & 教师 签名 & & 日 期 & \\
-\end{tabularx}
+
+\@endLine
+\begin{figure}[b!]
+    \renewcommand\arraystretch{1.5} % 行间距
+    \renewcommand{\tabcolsep}{0.2cm} % 列间距
+    \newcolumntype{C}{ >{\centering\arraybackslash} m{1.5cm} }
+    \newcolumntype{D}{ >{\centering\arraybackslash} m{0.3cm} }
+    \newcolumntype{E}{ >{\centering\arraybackslash} m{0.6cm} }
+    \begin{tabularx}{\textwidth}{C|D|X|D|X|D|X|D|X|D|X|E|p{2cm}|D|p{2cm}}
+    教师评价 & 优 & & 良 & & 中 & & 及 格 & & 不 及 格& & 教师 签名 & & 日 期 & \\
+    \end{tabularx}
+    \vspace*{-7.5pt}   
+\end{figure}
+
+
 
 }
 % Put this command here to avoid ending in an extra page
