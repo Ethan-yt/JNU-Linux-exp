@@ -91,11 +91,12 @@ chmod +x ./test1.sh  #使脚本具有执行权限
 \end{problem}
 
 \begin{answer}
-    \lstinline{$#}代表的是传递给脚本参数个数；
+    \lstinline{$#}代表的是传递给脚本参数个数； \\
     \lstinline{\$$count} 转义后即
     \lstinline{$2}，
-    \lstinline{$1},\ldots，表示命令名后面的参数；
-    \lstinline{count=`expr $count - 1`}，将变量count自减1。最后的cmd可以得到如下形式：
+    \lstinline{$1},\ldots，表示命令名后面的参数；\\
+    \lstinline{count=`expr $count - 1`}，将变量count自减1。\\
+    最后的cmd可以得到如下形式：
     \lstinline{echo $2 $1}，即将所有参输出。
 \end{answer}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

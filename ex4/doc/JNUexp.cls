@@ -4,9 +4,6 @@
 \ProcessOptions*
 \LoadClass{article}
 
-% \RequirePackage{ctex}   
-\setlength\parindent{0pt} % Removes all indentation from paragraphs
-
 %----------------------------------------------------------------------------------------
 %   FONT
 %----------------------------------------------------------------------------------------
@@ -14,17 +11,19 @@
 \setmainfont{Times New Roman}           %西文默认衬线字体(serif)
 \setsansfont{Arial}                     %西文默认无衬线字体(sans serif)
 \setmonofont{Courier New}               %西文默认的等宽字体
-\RequirePackage{xeCJK}                  %中文字体
+\RequirePackage{ctex}                   %中文字体
 \setCJKmainfont[ItalicFont={楷体}, BoldFont={黑体}]{宋体}
 
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+\renewcommand{\baselinestretch}{1.0} % 行距
 
 %----------------------------------------------------------------------------------------
 %   MARGIN
 %----------------------------------------------------------------------------------------
 
 \RequirePackage[a4paper,%
-left=2cm,%
-right=2cm,%
+left=2.5cm,%
+right=2.5cm,%
 top=2.25cm,%
 bottom=2.25cm%
 ]{geometry}%
@@ -37,14 +36,47 @@ bottom=2.25cm%
 \RequirePackage{fancyhdr}  			% use fancyhdr package to get 2-line header
 \pagestyle{fancy}\fancyhf{}
 \lhead{} % Top left header
-\chead{\@courseName: \@expName} % Top center head
+\chead{\@border\@courseName: \@expName} % Top center head
 \rhead{} % Top right header
 \lfoot{} % Bottom left footer
 \cfoot{} % Bottom center footer
 \rfoot{Page\ \thepage\ of\ \protect\pageref{LastPage}} % Bottom right footer
 \renewcommand\headrulewidth{0.4pt} % Size of the header rule
 \renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+\fancyheadoffset{0.3 cm} 
+\fancyfootoffset{0.3 cm} 
+% ----------------------------------------------------------------------------------------
+%   BORDER
+% ----------------------------------------------------------------------------------------
 
+\RequirePackage{tikz}
+\usetikzlibrary{calc}
+
+\newcommand{\@border}{
+\begin{tikzpicture}[remember picture,overlay] 
+\draw [line width=0.4pt]
+($ (current page.south west) + (2.2cm,2.05cm) $)
+rectangle
+($ (current page.north east) + (-2.2cm,-2.05cm) $);
+\end{tikzpicture}
+}
+
+\newcommand{\@beginLine}{
+\begin{tikzpicture}[remember picture,overlay] 
+\draw [line width=0.4pt]
+($ (current page.north west) + (2.2cm,-5.2cm) $)
+--
+($ (current page.north east) + (-2.2cm,-5.2cm) $);
+\end{tikzpicture}
+}
+\newcommand{\@endLine}{
+\begin{tikzpicture}[remember picture,overlay] 
+\draw [line width=0.4pt]
+($ (current page.south west) + (2.2cm,4.05cm) $)
+--
+($ (current page.south east) + (-2.2cm,4.05cm) $);
+\end{tikzpicture}
+}
 
 %----------------------------------------------------------------------------------------
 %	BEGIN of DOCUMENT
@@ -62,19 +94,11 @@ bottom=2.25cm%
 \RequirePackage{ulem}
 \newcommand{\@titleItem}[2]{#1 \uline{\hspace{\stretch{1}}#2\hspace{\stretch{1}}}}
 
-
-\usepackage[most]{tcolorbox}
-\tcbuselibrary{breakable}
 \RequirePackage{tabularx}
 
-\newtcolorbox{rowtable}[1][]{%
-breakable,nobeforeafter,colback=white, 
-boxsep=0pt, after skip=0pt,before skip=-1pt,
-arc=0mm,boxrule=0.5pt,
-segmentation style={solid}}
-
 \AtBeginDocument{
-\begin{rowtable}
+\@beginLine
+{
 \centering
 {\fontsize{26pt}{26pt}\textbf{江南大学物联网工程学院实验报告}\\[5pt]}
 \renewcommand{\arraystretch}{1.2} % 行间距
@@ -88,9 +112,7 @@ segmentation style={solid}}
 \@titleItem{学号}{\@studentId} \\
 \multicolumn{3}{l}{实验报告要求   1．实验目的  2．实验内容  3．实验步骤   4．运行情况  5．实验体会 }
 \end{tabularx}
-
-\end{rowtable}
-\begin{rowtable}
+}
 }
 
 %----------------------------------------------------------------------------------------
@@ -99,9 +121,7 @@ segmentation style={solid}}
 
 
 \AtEndDocument{
-
-\end{rowtable}
-
+\@endLine
 \vfill
 
 \renewcommand\arraystretch{1.5} % 行间距
@@ -109,10 +129,8 @@ segmentation style={solid}}
 \newcolumntype{C}{ >{\centering\arraybackslash} m{1.5cm} }
 \newcolumntype{D}{ >{\centering\arraybackslash} m{0.3cm} }
 \newcolumntype{E}{ >{\centering\arraybackslash} m{0.6cm} }
-\begin{tabularx}{\textwidth}{|C|D|X|D|X|D|X|D|X|D|X|E|p{2cm}|D|p{2cm}|}
-\hline
+\begin{tabularx}{\textwidth}{C|D|X|D|X|D|X|D|X|D|X|E|p{2cm}|D|p{2cm}}
 教师评价 & 优 & & 良 & & 中 & & 及 格 & & 不 及 格& & 教师 签名 & & 日 期 & \\
-\hline
 \end{tabularx}
 
 }
@@ -129,12 +147,12 @@ segmentation style={solid}}
 % http://texdoc.net/texmf-dist/doc/latex/listings/listings.pdf
 
 \RequirePackage{listings}
-\RequirePackage{xcolor}
 
 \newfontfamily\menlo{Menlo}
 
 \lstset{
-    columns=fixed,       
+    columns=fixed,    
+    breaklines=true,   
     numbers=left,                                        % 在左侧显示行号
     frame=single,                                        % 显示背景边框
     backgroundcolor=\color[RGB]{245,245,244},            % 设定背景颜色
@@ -165,5 +183,4 @@ segmentation style={solid}}
 
 \newenvironment{image}{
     \subparagraph{运行截图} \mbox{}\\
-    
 }{}
