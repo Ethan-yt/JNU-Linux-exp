@@ -186,6 +186,10 @@ rectangle
     \paragraph{Answer}\mbox{}\\
 }{}
 
+\RequirePackage{graphicx}
+
 \newenvironment{image}{
     \subparagraph{运行截图} \mbox{}\\
-}{}
+    \begin{figure}[h]
+    \centering
+}{\end{figure}}
