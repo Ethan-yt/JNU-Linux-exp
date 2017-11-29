@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 3.8)
+project(game)
+find_package( Curses REQUIRED )
+include_directories( ${CURSES_INCLUDE_DIRS} )
+set(CMAKE_CXX_STANDARD 11)
+set(SOURCE_FILES main.cpp set_ticker.c)
+add_executable(game ${SOURCE_FILES})
+target_link_libraries( game ${CURSES_LIBRARIES} )
