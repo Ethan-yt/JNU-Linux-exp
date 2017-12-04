@@ -13,3 +13,4 @@ cmake-build-debug/
 *.blg
 *.bcf
 *.bbl
+main.run.xml
