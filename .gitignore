@@ -9,3 +9,7 @@ cmake-build-debug/
 *.log
 *.gz
 *.out
+*.toc
+*.blg
+*.bcf
+*.bbl

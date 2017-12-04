@@ -1,6 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{JNUexp}[08/11/2017, v1.0]
-\DeclareOption*{\PassOptionsToClass{\CurrentOption,11pt,a4paper}{ctexart}}
+\DeclareOption*{\PassOptionsToClass{\CurrentOption,11pt,a4paper}{article}}
 \ProcessOptions*
 \LoadClass{article}
 
@@ -154,7 +154,7 @@ rectangle
 \RequirePackage{listings}
 
 \newfontfamily\menlo{Menlo}
-
+\usepackage{color}
 \lstset{
     columns=fixed,    
     breaklines=true,   
